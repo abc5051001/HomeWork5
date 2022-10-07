@@ -1,4 +1,4 @@
-name: SWE437HW5 Test for nifi
+name: SWE437HW5 Test for common-kafka
 
 on: [push]
 
@@ -8,14 +8,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Set up JDK 11
+      - name: Set up JDK 1
         uses: actions/setup-java@v3
         with:
-          java-version: '11'
+          java-version: '1'
           distribution: 'adopt'
           architecture: x64
-      - run: git clone https://github.com/apache/nifi
-#      - run: git clone https://github.com/TestingResearchIllinois/NonDex
+      - run: git clone https://github.com/cerner/common-kafka
+  #    - run: git clone https://github.com/TestingResearchIllinois/NonDex
       - run: ls
 #      - name: Set up JDK 8
  #       uses: actions/setup-java@v3
@@ -25,19 +25,19 @@ jobs:
      #     architecture: x64
       #- name: maven NonDex
        # run: mvn install
-        # working-directory: NonDex
-      - name: Set up JDK 11
+        #working-directory: NonDex
+      - name: Set up JDK 1
         uses: actions/setup-java@v3
         with:
-          java-version: '11'
+          java-version: '1'
           distribution: 'adopt'
           architecture: x64
       - name: compile the module where the test is, and all modules it depends on
-        run: mvn test-compile -pl nifi-registry/nifi-registry-core/nifi-registry-framework -am -e
-        working-directory: nifi
+        run: mvn test-compile -pl common-kafka -am -e
+        working-directory: common-kafka
       - name: run the test to check that it passes
-        run: mvn -pl nifi-registry/nifi-registry-core/nifi-registry-framework test -Dtest=org.apache.nifi.registry.security.ldap.tenants.LdapUserGroupProviderTest#testSearchGroupsWithNoNameAttribute
-        working-directory: nifi
+        run: mvn -pl common-kafka test -Dtest=com.cerner.common.kafka.consumer.ProcessingKafkaConsumerTest#nextRecord_fairProcessing
+        working-directory: common-kafka
       - name: Set up JDK 8
         uses: actions/setup-java@v3
         with:
