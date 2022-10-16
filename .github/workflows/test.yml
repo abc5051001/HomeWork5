@@ -31,6 +31,6 @@ jobs:
         run: mvn -pl nifi-registry/nifi-registry-core/nifi-registry-framework test -Dtest=org.apache.nifi.registry.security.ldap.tenants.LdapUserGroupProviderTest#testSearchGroupsWithNoNameAttribute
         working-directory: nifi
       - name: if the test passes in regular runs, see if it fails with the NonDex tool that reports flaky tests
-        run: mvn -pl modules/storage-api edu.illinois:nondex-maven-plugin:1.1.2:nondex -Dtest=org.apache.nifi.registry.security.ldap.tenants.LdapUserGroupProviderTest#testSearchGroupsWithNoNameAttribute
+        run: mvn -pl nifi-registry/nifi-registry-core/nifi-registry-framework test edu.illinois:nondex-maven-plugin:1.1.2:nondex -Dtest=org.apache.nifi.registry.security.ldap.tenants.LdapUserGroupProviderTest#testSearchGroupsWithNoNameAttribute
         working-directory: nifi
 
