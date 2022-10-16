@@ -1,4 +1,4 @@
-name: SWE437HW5 Test for common-kafka
+name: SWE437HW5 Test for ignite-3
 
 on: [push]
 
@@ -33,11 +33,11 @@ jobs:
           distribution: 'adopt'
           architecture: x64
       - name: compile the module where the test is, and all modules it depends on
-        run: mvn test-compile -pl common-kafka -am -e
-        working-directory: common-kafka
+        run: mvn test-compile -pl modules/storage-api -am -e
+        working-directory: ignite-3
       - name: run the test to check that it passes
-        run: mvn -pl common-kafka test -Dtest=com.cerner.common.kafka.consumer.ProcessingKafkaConsumerTest#nextRecord_fairProcessing
-        working-directory: common-kafka
+        run: mvn -pl modules/storage-api test -Dtest=org.apache.ignite.internal.storage.ConcurrentHashMapStorageTest#testDeleteExactClosure
+        working-directory: ignite-3
       - name: Set up JDK 8
         uses: actions/setup-java@v3
         with:
@@ -45,5 +45,5 @@ jobs:
           distribution: 'adopt'
           architecture: x64
       - name: if the test passes in regular runs, see if it fails with the NonDex tool that reports flaky tests
-        run: mvn -pl common-kafka edu.illinois:nondex-maven-plugin:1.1.2:nondex -Dtest=com.cerner.common.kafka.consumer.ProcessingKafkaConsumerTest#nextRecord_fairProcessing -DnondexRuns=20 
-        working-directory: common-kafka
+        run: mvn -pl modules/storage-api edu.illinois:nondex-maven-plugin:1.1.2:nondex -Dtest=org.apache.ignite.internal.storage.ConcurrentHashMapStorageTest#testDeleteExactClosure
+        working-directory: ignite-3
