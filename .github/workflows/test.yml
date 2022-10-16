@@ -33,10 +33,10 @@ jobs:
           #distribution: 'adopt'
           #architecture: x64
       - name: compile the module where the test is, and all modules it depends on
-        run: mvn test-compile -pl modules/storage-api -am -e
+        run: mvn test-compile -pl modules/storage-page-memory -am -e
         working-directory: ignite-3
       - name: run the test to check that it passes
-        run: mvn -pl modules/storage-api test -Dtest=org.apache.ignite.internal.storage.DataStorageManagerTest#testTableDataStorageConsumerSuccess
+        run: mvn -pl modules/storage-page-memory test -Dtest=org.apache.ignite.internal.storage.pagememory.mv.PageMemoryMvPartitionStorageTest#readByExactlyCommitTimestampFindsRow
         working-directory: ignite-3
       - name: Set up JDK 8
         uses: actions/setup-java@v3
@@ -45,5 +45,5 @@ jobs:
           distribution: 'adopt'
           architecture: x64
       - name: if the test passes in regular runs, see if it fails with the NonDex tool that reports flaky tests
-        run: mvn -pl modules/storage-api edu.illinois:nondex-maven-plugin:1.1.2:nondex -Dtest=org.apache.ignite.internal.storage.DataStorageManagerTest#testTableDataStorageConsumerSuccess
+        run: mvn -pl modules/storage-api edu.illinois:nondex-maven-plugin:1.1.2:nondex -Dtest=org.apache.ignite.internal.storage.pagememory.mv.PageMemoryMvPartitionStorageTest#readByExactlyCommitTimestampFindsRow
         working-directory: ignite-3
