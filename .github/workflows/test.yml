@@ -33,6 +33,8 @@ jobs:
          # java-version: '8'
           #distribution: 'adopt'
           #architecture: x64
+      - name: maven clean install
+        run: mvn clean install -DskipTests -pl nifi-registry/nifi-registry-core/nifi-registry-framework -am
       - name: compile the module where the test is, and all modules it depends on
         run: mvn test-compile -pl nifi-registry/nifi-registry-core/nifi-registry-framework -am -e
         working-directory: nifi
