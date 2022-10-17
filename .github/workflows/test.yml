@@ -22,6 +22,7 @@ jobs:
       - name: maven NonDex
         run: mvn install
         working-directory: NonDex
+        
       - name: check out f539d9886e3e0f3f1068e9e13af0988dae70377a
         run: git checkout f539d9886e3e0f3f1068e9e13af0988dae70377a
         working-directory: nifi
