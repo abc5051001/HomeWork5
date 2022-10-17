@@ -22,8 +22,8 @@ jobs:
       - name: maven NonDex
         run: mvn install
         working-directory: NonDex
-      - name: check out ba7271c85b59cb62a66282360f90eba3e3f0b5ba
-        run: git checkout ba7271c85b59cb62a66282360f90eba3e3f0b5ba
+      - name: check out 3621a2182c71b9b5fe9af53c584cc6b8ae4e2712
+        run: git checkout 3621a2182c71b9b5fe9af53c584cc6b8ae4e2712
         working-directory: nifi
       - name: maven clean install
         run: mvn clean install -DskipTests -pl nifi-registry/nifi-registry-core/nifi-registry-framework -am
