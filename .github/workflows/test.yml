@@ -16,9 +16,9 @@ jobs:
       - run: git clone https://github.com/apache/nifi
       - run: git clone https://github.com/TestingResearchIllinois/NonDex
       - run: ls
-      - name: check all versions
-        run: git log
-        working-directory: nifi
+      #- name: check all versions
+      #  run: git log
+     #   working-directory: nifi
       - name: maven NonDex
         run: mvn install
         working-directory: NonDex
