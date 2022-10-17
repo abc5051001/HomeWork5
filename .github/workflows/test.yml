@@ -27,7 +27,7 @@ jobs:
         working-directory: nifi
      # - name: maven clean install
      #   run: mvn clean install -DskipTests -pl nifi-registry/nifi-registry-core/nifi-registry-framework -am
-        working-directory: nifi
+     #   working-directory: nifi
       - name: compile the module where the test is, and all modules it depends on
         run: mvn test-compile -pl nifi-registry/nifi-registry-core/nifi-registry-framework -am -e
         working-directory: nifi
