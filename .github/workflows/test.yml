@@ -25,8 +25,8 @@ jobs:
       - name: check out 445efcfde615e94f03a0a42fab4309313d821046 2020
         run: git checkout 445efcfde615e94f03a0a42fab4309313d821046
         working-directory: nifi
-      - name: maven clean install
-        run: mvn clean install -DskipTests -pl nifi-registry/nifi-registry-core/nifi-registry-framework -am
+     # - name: maven clean install
+     #   run: mvn clean install -DskipTests -pl nifi-registry/nifi-registry-core/nifi-registry-framework -am
         working-directory: nifi
       - name: compile the module where the test is, and all modules it depends on
         run: mvn test-compile -pl nifi-registry/nifi-registry-core/nifi-registry-framework -am -e
