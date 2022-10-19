@@ -16,26 +16,25 @@ jobs:
       - run: git clone https://github.com/apache/nifi
       - run: git clone https://github.com/TestingResearchIllinois/NonDex
       - run: ls
-      #- name: check all versions
-      #  run: git log
-     #   working-directory: nifi
+      - name: check all versions
+        run: git log
+        working-directory: nifi
       - name: maven NonDex
         run: mvn install
         working-directory: NonDex
-        
-      - name: check out 103aae64cb28de235983880ba2b78f935ca56767        
-        run: git checkout 103aae64cb28de235983880ba2b78f935ca56767        
+      - name: check out a466e714a0b4ad1c6acd088faf131610097ac9a1         
+        run: git checkout a466e714a0b4ad1c6acd088faf131610097ac9a1         
         working-directory: nifi
-     # - name: maven clean install
-      #  run: mvn clean install -DskipTests -pl nifi-registry/nifi-registry-core/nifi-registry-framework -am
-      #  working-directory: nifi
-      - name: compile the module where the test is, and all modules it depends on
+      - name: maven clean install
+        run: mvn clean install -DskipTests -pl nifi-registry/nifi-registry-core/nifi-registry-framework -am
+        working-directory: nifi
+      - name: compile the module
         run: mvn test-compile -pl nifi-registry/nifi-registry-core/nifi-registry-framework -am -e
         working-directory: nifi
-      - name: run the test to check that it passes
+      - name: run the test
         run: mvn -pl nifi-registry/nifi-registry-core/nifi-registry-framework test -Dtest=org.apache.nifi.registry.security.ldap.tenants.LdapUserGroupProviderTest#testSearchGroupsWithNoNameAttribute
         working-directory: nifi
-      - name: if the test passes in regular runs, see if it fails with the NonDex tool that reports flaky tests
+      - name: NonDex to check flaky tests, if fails then this there is flaky test 
         run: mvn -pl nifi-registry/nifi-registry-core/nifi-registry-framework test edu.illinois:nondex-maven-plugin:1.1.2:nondex -Dtest=org.apache.nifi.registry.security.ldap.tenants.LdapUserGroupProviderTest#testSearchGroupsWithNoNameAttribute
         working-directory: nifi
 
